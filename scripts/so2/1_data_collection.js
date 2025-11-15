@@ -1,6 +1,5 @@
 //// DEFINIÇÃO DE PARÂMETROS E COLEÇÃO DE IMAGENS
 
-
 // Sentinel-5P: coluna do poluente
 var S5P_SO2 = ee.ImageCollection('COPERNICUS/S5P/OFFL/L3_SO2');
 var pollutant_band = 'SO2_column_number_density';
@@ -21,9 +20,7 @@ var conversion_factor = molar_mass * 1e6; // g/mol * (µg/g)
 var placeholder = ee.Image(1000).rename('refHeight'); // altura aproximada em metros
 
 
-
 //// FUNÇÕES DE PRÉ-PROCESSAMENTO E CONVERSÃO DAS IMAGENS
-
 
 // 1) HARMONIZAÇÃO DAS IMAGENS (ERA5 para S5P)
 
@@ -54,7 +51,6 @@ var convert = function(pollutant_img, pblh_img) {
 };
 
 
-
 //// APLICAÇÃO DAS FUNÇÕES E GERAÇÃO DOS PRODUTOS FINAIS
 
 // 1) MÉDIA TEMPORAL DO POLUENTE
@@ -79,7 +75,6 @@ var pblh_harmonized = harmonize(pblh_mean_img, S5P_SO2.first());
 var sulfur_dioxide_ug_m3 = convert(sulfur_dioxide, pblh_harmonized);
 
 
-
 //// PARÂMETROS DE VISUALIZAÇÃO
 
 var pollutant_vis = {
@@ -95,7 +90,6 @@ Map.addLayer(
     pollutant_vis,
     'S5P Dióxido de Enxofre (µg/m³)'
 );
-
 
 
 //// EXPORTAÇÃO
